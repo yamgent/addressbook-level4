@@ -122,10 +122,4 @@ public class Person implements ReadOnlyPerson {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, tags);
     }
-
-    @Override
-    public String toString() {
-        return getAsText();
-    }
-
 }
