@@ -1,5 +1,7 @@
 package seedu.address.commons.core;
 
+import seedu.address.model.person.ReadOnlyPerson;
+
 /**
  * Container for user visible messages.
  */
@@ -10,4 +12,20 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
 
+    /**
+     * Formats the person as text, showing all contact details.
+     */
+    public static String getPersonDetails(ReadOnlyPerson person) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(person.getName())
+                .append(" Phone: ")
+                .append(person.getPhone())
+                .append(" Email: ")
+                .append(person.getEmail())
+                .append(" Address: ")
+                .append(person.getAddress())
+                .append(" Tags: ");
+        person.getTags().forEach(builder::append);
+        return builder.toString();
+    }
 }
