@@ -146,6 +146,7 @@ public class EditCommandTest extends AddressBookGuiTest {
         // confirm the list now contains all previous persons plus the person with updated details
         expectedPersonsList[IndexUtil.oneToZeroIndex(addressBookIndex)] = editedPerson;
         assertTrue(personListPanel.isListMatching(expectedPersonsList));
-        assertResultMessage(String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        assertResultMessage(
+                String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.getPersonDetails(editedPerson)));
     }
 }

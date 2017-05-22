@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.DeleteCommand.MESSAGE_DELETE_PERSON_S
 
 import org.junit.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.IndexUtil;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.model.person.Person;
@@ -51,7 +52,7 @@ public class DeleteCommandTest extends AddressBookGuiTest {
         assertTrue(personListPanel.isListMatching(expectedRemainder));
 
         //confirm the result message is correct
-        assertResultMessage(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        assertResultMessage(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.getPersonDetails(personToDelete)));
     }
 
 }

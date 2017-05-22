@@ -45,7 +45,8 @@ public class DeleteCommand extends Command {
             assert false : "The target person cannot be missing";
         }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        return new CommandResult(
+                String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.getPersonDetails(personToDelete)));
     }
 
 }

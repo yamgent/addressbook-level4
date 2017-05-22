@@ -27,6 +27,7 @@ import org.junit.rules.TemporaryFolder;
 import com.google.common.eventbus.Subscribe;
 
 import seedu.address.commons.core.EventsCenter;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.events.model.AddressBookChangedEvent;
 import seedu.address.commons.events.ui.JumpToListRequestEvent;
 import seedu.address.commons.events.ui.ShowHelpRequestEvent;
@@ -249,7 +250,7 @@ public class LogicManagerTest {
 
         // execute command and verify result
         assertCommandSuccess(helper.generateAddCommand(toBeAdded),
-                String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded),
+                String.format(AddCommand.MESSAGE_SUCCESS, Messages.getPersonDetails(toBeAdded)),
                 expectedAb,
                 expectedAb.getPersonList());
 
@@ -371,7 +372,8 @@ public class LogicManagerTest {
         helper.addToModel(model, threePersons);
 
         assertCommandSuccess(DeleteCommand.COMMAND_WORD + " 2",
-                String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, threePersons.get(1)),
+                String.format(
+                        DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, Messages.getPersonDetails(threePersons.get(1))),
                 expectedAb,
                 expectedAb.getPersonList());
     }

@@ -43,7 +43,8 @@ public class EditCommandIntegrationTest {
         String userInput = PersonUtil.getEditCommand(ZERO_BASED_INDEX_FIRST_PERSON, editedPerson);
         Command command = prepareCommand(userInput);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage =
+                String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.getPersonDetails(editedPerson));
 
         AddressBook expectedAddressBook = new AddressBook(model.getAddressBook());
         expectedAddressBook.updatePerson(ZERO_BASED_INDEX_FIRST_PERSON, editedPerson);
