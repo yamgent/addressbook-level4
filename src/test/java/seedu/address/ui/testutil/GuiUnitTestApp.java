@@ -4,10 +4,16 @@ import static org.junit.Assert.fail;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import seedu.address.MainApp;
+import seedu.address.ui.CommandBoxTest;
 import seedu.address.ui.UiPart;
 
 /**
@@ -26,19 +32,29 @@ public class GuiUnitTestApp extends Application {
     private static final String[] CSS_FILES = { "view/DarkTheme.css", "view/Extensions.css" };
 
     private Stage stage;
+
+    @FXML
     private AnchorPane mainPane;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.stage = primaryStage;
-        this.mainPane = new AnchorPane();
+        // this.mainPane = new AnchorPane();
 
-        Scene scene = new Scene(mainPane, DEFAULT_STAGE_WIDTH, DEFAULT_STAGE_HEIGHT);
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/UiTestApp.fxml"));
+        Scene scene = new Scene(root, DEFAULT_STAGE_WIDTH, DEFAULT_STAGE_HEIGHT);
+        //Scene scene = new Scene(mainPane, DEFAULT_STAGE_WIDTH, DEFAULT_STAGE_HEIGHT);
         for (String cssFile : CSS_FILES) {
             scene.getStylesheets().add(cssFile);
         }
         stage.setScene(scene);
         stage.show();
+
+        // mainPane.getStyleClass().add("anchor-pane-with-border");
+
+        //TextField textField = new TextField();
+        //textField.setId("commandTextField");
+        //mainPane.getChildren().add(textField);
     }
 
     /**
@@ -110,5 +126,9 @@ public class GuiUnitTestApp extends Application {
             fail("Unable to launch application.");
             return null;
         }
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }
