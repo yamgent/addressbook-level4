@@ -45,6 +45,7 @@ public class HelpWindowTest extends AddressBookGuiTest {
         int eventWaitTimeout = 5000;
         guiRobot.waitForEvent(() -> guiRobot.lookup("#helpWindowRoot").tryQuery().isPresent(), eventWaitTimeout);
         new HelpWindowHandle().closeWindow();
+        guiRobot.waitForEvent(() -> !(guiRobot.lookup("#helpWindowRoot").tryQuery().isPresent()), eventWaitTimeout);
     }
 
     private void assertHelpWindowNotOpen() {
