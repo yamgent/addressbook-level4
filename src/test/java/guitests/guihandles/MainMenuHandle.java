@@ -27,6 +27,6 @@ public class MainMenuHandle extends NodeHandle {
 
     private void useF1Accelerator() {
         guiRobot.push(KeyCode.F1);
-        guiRobot.pauseForHuman(500);
+        guiRobot.sleep(500);
     }
 }
