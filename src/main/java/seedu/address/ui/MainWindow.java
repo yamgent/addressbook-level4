@@ -183,6 +183,7 @@ public class MainWindow extends UiPart<Region> {
     public void handleHelp() {
         HelpWindow helpWindow = new HelpWindow();
         helpWindow.show();
+        logger.info("help window add");
     }
 
     void show() {
