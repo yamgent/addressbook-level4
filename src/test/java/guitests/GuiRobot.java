@@ -39,7 +39,7 @@ public class GuiRobot extends FxRobot {
      */
     public void waitForEvent(BooleanSupplier event, int timeout) {
         int timePassed = 0;
-        int retryInterval = 1000;
+        int retryInterval = 10;
 
         while (event.getAsBoolean() != true) {
             sleep(retryInterval);
