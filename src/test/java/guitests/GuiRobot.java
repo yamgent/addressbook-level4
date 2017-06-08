@@ -46,7 +46,7 @@ public class GuiRobot extends FxRobot {
         int retryInterval = 10;
 
         while (event.getAsBoolean() != true) {
-            logger.info("Sleep for " + retryInterval);
+            logger.info("Sleep for " + retryInterval + "ms");
             sleep(retryInterval);
             timePassed += retryInterval;
 

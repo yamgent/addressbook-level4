@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import org.testfx.api.FxRobot;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -187,8 +189,10 @@ public class MainWindow extends UiPart<Region> {
     @FXML
     public void handleHelp() {
         HelpWindow helpWindow = new HelpWindow();
-        helpWindow.show();
+        FxRobot guiRobot = new FxRobot();
+        guiRobot.interact(() -> helpWindow.show());
         logger.info("GUI: help window opened");
+
     }
 
     void show() {
