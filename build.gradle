@@ -64,6 +64,12 @@ allprojects {
         compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
         compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonDataTypeVersion"
         compile "com.google.guava:guava:$guavaVersion"
+        compile "org.testfx:testfx-core:$testFxVersion"
+        compile "org.testfx:testfx-junit:$testFxVersion"
+        compile "org.testfx:testfx-legacy:$testFxVersion", {
+            exclude group: "junit", module: "junit"
+        }
+        compile "org.testfx:openjfx-monocle:$monocleVersion"
 
         testCompile "junit:junit:$junitVersion"
         testCompile "org.testfx:testfx-core:$testFxVersion"
