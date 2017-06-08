@@ -42,7 +42,7 @@ public class HelpWindowTest extends AddressBookGuiTest {
     private void assertHelpWindowOpen() {
         GuiRobot guiRobot = new GuiRobot();
 
-        int eventWaitTimeout = 60000;
+        int eventWaitTimeout = 5000;
         guiRobot.waitForEvent(() -> guiRobot.lookup("#helpWindowRoot").tryQuery().isPresent(), eventWaitTimeout);
         new HelpWindowHandle().closeWindow();
         guiRobot.waitForEvent(() -> !(guiRobot.lookup("#helpWindowRoot").tryQuery().isPresent()), eventWaitTimeout);
