@@ -2,11 +2,13 @@ package guitests;
 
 import java.util.Optional;
 import java.util.function.BooleanSupplier;
+import java.util.logging.Logger;
 
 import org.testfx.api.FxRobot;
 
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import seedu.address.commons.core.LogsCenter;
 
 /**
  * Robot used to simulate user actions on the GUI.
@@ -17,6 +19,8 @@ public class GuiRobot extends FxRobot {
     public static final String PROPERTY_GUITESTS_HEADLESS = "guitests.headless";
 
     private boolean isHeadlessMode = false;
+
+    private Logger logger = LogsCenter.getLogger(GuiRobot.class);
 
     public GuiRobot() {
         String headlessPropertyValue = System.getProperty(PROPERTY_GUITESTS_HEADLESS);
@@ -42,6 +46,7 @@ public class GuiRobot extends FxRobot {
         int retryInterval = 10;
 
         while (event.getAsBoolean() != true) {
+            logger.info("Sleep for " + retryInterval);
             sleep(retryInterval);
             timePassed += retryInterval;
 
@@ -49,6 +54,7 @@ public class GuiRobot extends FxRobot {
                 throw new AssertionError("Event timeout.");
             }
 
+            logger.info("Failed, retrying...");
             retryInterval += retryInterval;
         }
     }
