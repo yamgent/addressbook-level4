@@ -29,7 +29,7 @@ public class HelpWindowTest extends AddressBookGuiTest {
         guiRobot.push(KeyCode.F1);
         assertHelpWindowOpen();
 
-        getBrowserPanel().clickOnWebView();
+        getBrowserPanel().clickOnSelf();
         guiRobot.push(KeyCode.F1);
         assertHelpWindowNotOpen();
 
