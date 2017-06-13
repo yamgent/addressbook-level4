@@ -14,8 +14,8 @@ import org.testfx.api.FxToolkit;
 
 import guitests.guihandles.BrowserPanelHandle;
 import guitests.guihandles.CommandBoxHandle;
-import guitests.guihandles.MainGuiHandle;
 import guitests.guihandles.MainMenuHandle;
+import guitests.guihandles.MainWindowHandle;
 import guitests.guihandles.PersonCardHandle;
 import guitests.guihandles.PersonListPanelHandle;
 import guitests.guihandles.ResultDisplayHandle;
@@ -42,7 +42,7 @@ public abstract class AddressBookGuiTest {
     protected TypicalPersons td = new TypicalPersons();
     protected GuiRobot guiRobot = GuiRobot.getInstance();
 
-    private MainGuiHandle mainGui;
+    protected MainWindowHandle mainWindowHandle;
 
     private Stage stage;
 
@@ -65,8 +65,8 @@ public abstract class AddressBookGuiTest {
         FxToolkit.setupApplication(() -> new TestApp(this::getInitialData, getDataFileLocation()));
         FxToolkit.showStage();
 
-        mainGui = new MainGuiHandle();
-        mainGui.focusOnMainApp();
+        mainWindowHandle = new MainWindowHandle(stage);
+        mainWindowHandle.focusOnWindow();
     }
 
     /**
@@ -80,27 +80,27 @@ public abstract class AddressBookGuiTest {
     }
 
     protected CommandBoxHandle getCommandBox() {
-        return mainGui.getCommandBox();
+        return mainWindowHandle.getCommandBox();
     }
 
     protected PersonListPanelHandle getPersonListPanel() {
-        return mainGui.getPersonListPanel();
+        return mainWindowHandle.getPersonListPanel();
     }
 
     protected MainMenuHandle getMainMenu() {
-        return mainGui.getMainMenu();
+        return mainWindowHandle.getMainMenu();
     }
 
     protected BrowserPanelHandle getBrowserPanel() {
-        return mainGui.getBrowserPanel();
+        return mainWindowHandle.getBrowserPanel();
     }
 
     protected StatusBarFooterHandle getStatusBarFooter() {
-        return mainGui.getStatusBarFooter();
+        return mainWindowHandle.getStatusBarFooter();
     }
 
     protected ResultDisplayHandle getResultDisplay() {
-        return mainGui.getResultDisplay();
+        return mainWindowHandle.getResultDisplay();
     }
 
     /**
