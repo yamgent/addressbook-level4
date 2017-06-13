@@ -17,7 +17,7 @@ public class HelpWindowTest extends AddressBookGuiTest {
     @Test
     public void openHelpWindow() {
         //use accelerator
-        getCommandBox().clickOnTextField();
+        getCommandBox().clickOnSelf();
         guiRobot.push(KeyCode.F1);
         assertHelpWindowOpen();
 

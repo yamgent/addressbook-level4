@@ -57,7 +57,7 @@ public class CommandBoxTest extends AddressBookGuiTest {
      */
     private void assertBehaviorForFailedCommand() {
         assertFalse(getCommandBox().enterCommand(COMMAND_THAT_FAILS));
-        assertEquals(COMMAND_THAT_FAILS, getCommandBox().getCommandInput());
+        assertEquals(COMMAND_THAT_FAILS, getCommandBox().getInput());
         assertEquals(errorStyleOfCommandBox, getCommandBox().getStyleClass());
     }
 
@@ -69,7 +69,7 @@ public class CommandBoxTest extends AddressBookGuiTest {
      */
     private void assertBehaviorForSuccessfulCommand() {
         assertTrue(getCommandBox().enterCommand(COMMAND_THAT_SUCCEEDS));
-        assertEquals("", getCommandBox().getCommandInput());
+        assertEquals("", getCommandBox().getInput());
         assertEquals(defaultStyleOfCommandBox, getCommandBox().getStyleClass());
     }
 
