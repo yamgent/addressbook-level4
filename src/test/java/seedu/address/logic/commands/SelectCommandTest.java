@@ -65,6 +65,7 @@ public class SelectCommandTest {
     @Test
     public void execute_invalidIndexFilteredList_failure() {
         showFirstPersonOnly(model);
+        eventsCollectorRule.eventsCollector.reset();
 
         Index outOfBoundsIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list

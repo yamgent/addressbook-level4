@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.model.AddressBookChangedEvent;
+import seedu.address.commons.events.model.FilteredListChangedEvent;
 
 /**
  * A ui for the status bar that is displayed at the footer of the application.
@@ -21,6 +22,8 @@ public class StatusBarFooter extends UiPart<Region> {
 
     public static final String SYNC_STATUS_INITIAL = "Not updated yet in this session";
     public static final String SYNC_STATUS_UPDATED = "Last Updated: %s";
+
+    public static final String TOTAL_PERSONS_STATUS = "%d person(s) total";
 
     /**
      * Used to generate time stamps.
@@ -39,13 +42,15 @@ public class StatusBarFooter extends UiPart<Region> {
     @FXML
     private StatusBar syncStatus;
     @FXML
+    private StatusBar totalPersonsStatus;
+    @FXML
     private StatusBar saveLocationStatus;
 
-
-    public StatusBarFooter(String saveLocation) {
+    public StatusBarFooter(String saveLocation, int totalPersons) {
         super(FXML);
         setSyncStatus(SYNC_STATUS_INITIAL);
         setSaveLocation("./" + saveLocation);
+        setTotalPersons(totalPersons);
         registerAsAnEventHandler(this);
     }
 
@@ -71,11 +76,20 @@ public class StatusBarFooter extends UiPart<Region> {
         Platform.runLater(() -> this.syncStatus.setText(status));
     }
 
+    private void setTotalPersons(int totalPersons) {
+        Platform.runLater(() -> this.totalPersonsStatus.setText(String.format(TOTAL_PERSONS_STATUS, totalPersons)));
+    }
+
     @Subscribe
     public void handleAddressBookChangedEvent(AddressBookChangedEvent abce) {
         long now = clock.millis();
         String lastUpdated = new Date(now).toString();
         logger.info(LogsCenter.getEventHandlingLogMessage(abce, "Setting last updated status to " + lastUpdated));
         setSyncStatus(String.format(SYNC_STATUS_UPDATED, lastUpdated));
+    }
+
+    @Subscribe
+    public void handleFilteredListChangedEvent(FilteredListChangedEvent flce) {
+        setTotalPersons(flce.list.size());
     }
 }
