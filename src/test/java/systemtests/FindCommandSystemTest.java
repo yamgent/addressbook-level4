@@ -167,14 +167,19 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
         String expectedResultMessage = String.format(
                 MESSAGE_PERSONS_LISTED_OVERVIEW, expectedModel.getFilteredPersonList().size());
 
-        boolean totalPersonsChanged = (
+        boolean filteredListChanged = (
                 getModel().getFilteredPersonList().size() != expectedModel.getFilteredPersonList().size());
+        boolean originalListChanged = (
+                getModel().getAddressBook().getPersonList().size()
+                        != expectedModel.getAddressBook().getPersonList().size());
 
         executeCommand(command);
         assertApplicationDisplaysExpected("", expectedResultMessage, expectedModel);
         assertCommandBoxShowsDefaultStyle();
 
-        if (totalPersonsChanged) {
+        if (originalListChanged && filteredListChanged) {
+            assertStatusBarUnchangedExceptSyncStatusAndTotalPersons();
+        } else if (filteredListChanged) {
             assertStatusBarUnchangedExceptTotalPersons();
         } else {
             assertStatusBarUnchanged();
